@@ -1,21 +1,39 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { useState } from "react";
 
+const courses = [
+  {
+    id: 1,
+    name: "HTML, CSS",
+  },
+  {
+    id: 2,
+    name: "Javascript",
+  },
+  {
+    id: 3,
+    name: "ReactJS",
+  },
+];
 function App() {
+  const [checked, setChecketd] = useState();
+
+  const handleSubmit = () => {
+    // call API
+    console.log({ id: checked });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Lo mà học đi xem xem cái gì. Code đi.</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Đọc Doc của React đi rồi làm
-        </a>
-      </header>
+    <div style={{ padding: 32 }}>
+      {courses.map((course) => (
+        <div key={course.id}>
+          <input
+            type="radio"
+            checked={checked === course.id}
+            onChange={() => setChecketd(course.id)}
+          />
+          {course.name}
+        </div>
+      ))}
+      <button onClick={handleSubmit}>Lựa chọn</button>
     </div>
   );
 }
